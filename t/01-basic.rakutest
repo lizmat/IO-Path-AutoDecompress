@@ -1,0 +1,14 @@
+use Test;
+use IO::Path::AutoDecompress;
+
+plan 4;
+
+my $path := IO::Path::AutoDecompress.new($*PROGRAM.relative);
+
+isa-ok $path, IO::Path::AutoDecompress;
+isa-ok $path, IO::Path;
+
+is-deeply $path.slurp, $*PROGRAM.slurp, 'normal .slurp ok';
+is-deeply $path.lines, $*PROGRAM.lines, 'normal .lines ok';
+
+# vim: expandtab shiftwidth=4

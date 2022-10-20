@@ -1,0 +1,25 @@
+{
+  "auth": "zef:lizmat",
+  "authors": [
+    "Elizabeth Mattijsen"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+  ],
+  "description": "IO::Path with automatic decompression",
+  "license": "Artistic-2.0",
+  "name": "IO::Path::AutoDecompress",
+  "perl": "6.d",
+  "provides": {
+    "IO::Path::AutoDecompress": "lib/IO/Path/AutoDecompress.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "https://github.com/lizmat/IO-Path-AutoDecompress.git",
+  "tags": [
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}
