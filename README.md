@@ -10,12 +10,36 @@ SYNOPSIS
 
 ```raku
 use IO::Path::AutoDecompress;
+
+# read lines from a gzipped file transparently
+my $io = IO::Path::AutoDecompress.new("foobar.txt.gz");
+.say for $io.lines;
+
+# same, but using an .IO like subroutine as a method
+my $io = "foobar.txt.gz".&IOAD;
+.say for $io.lines;
 ```
 
 DESCRIPTION
 ===========
 
 IO::Path::AutoDecompress is a module that provides a subclass to `IO::Path`, that will transparently handle compressed files that are compressed with `gzip` (the `.gz` file extension) or `bzip2` (the `.bz2` extension) for the `.slurp` and `.lines` methods.
+
+EXPORTED SUBROUTINES
+====================
+
+IOAD
+----
+
+The `IOAD` subroutine takes one positional argument and converts that to an `IO::Path::AutoDecompress` object. It is intended to be used in a way similar to the `.IO` method in core.
+
+```raku
+use IO::Path::AutoDecompress;
+
+# using the IOAD subroutine as a method
+my $io = "foobar.txt.gz".&IOAD;
+.say for $io.lines;
+```
 
 PREREQUISITES
 =============

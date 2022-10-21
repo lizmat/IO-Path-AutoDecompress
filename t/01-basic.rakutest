@@ -1,14 +1,16 @@
 use Test;
 use IO::Path::AutoDecompress;
 
-plan 4;
+plan 8;
 
-my $path := IO::Path::AutoDecompress.new($*PROGRAM.relative);
+my $io := $*PROGRAM;
+for IO::Path::AutoDecompress.new($io.relative), $io.&IOAD -> $path {
 
-isa-ok $path, IO::Path::AutoDecompress;
-isa-ok $path, IO::Path;
+    isa-ok $path, IO::Path::AutoDecompress;
+    isa-ok $path, IO::Path;
 
-is-deeply $path.slurp, $*PROGRAM.slurp, 'normal .slurp ok';
-is-deeply $path.lines, $*PROGRAM.lines, 'normal .lines ok';
+    is-deeply $path.slurp, $io.slurp, 'normal .slurp ok';
+    is-deeply $path.lines, $io.lines, 'normal .lines ok';
+}
 
 # vim: expandtab shiftwidth=4

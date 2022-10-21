@@ -34,6 +34,10 @@ class IO::Path::AutoDecompress is IO::Path {
     }
 }
 
+my sub IOAD($path) is export {
+    IO::Path::AutoDecompress.new($path)
+}
+
 =begin pod
 
 =head1 NAME
@@ -46,6 +50,14 @@ IO::Path::AutoDecompress - IO::Path with automatic decompression
 
 use IO::Path::AutoDecompress;
 
+# read lines from a gzipped file transparently
+my $io = IO::Path::AutoDecompress.new("foobar.txt.gz");
+.say for $io.lines;
+
+# same, but using an .IO like subroutine as a method
+my $io = "foobar.txt.gz".&IOAD;
+.say for $io.lines;
+
 =end code
 
 =head1 DESCRIPTION
@@ -54,6 +66,24 @@ IO::Path::AutoDecompress is a module that provides a subclass to
 C<IO::Path>, that will transparently handle compressed files that
 are compressed with C<gzip> (the C<.gz> file extension) or C<bzip2>
 (the C<.bz2> extension) for the C<.slurp> and C<.lines> methods.
+
+=head1 EXPORTED SUBROUTINES
+
+=head2 IOAD
+
+The C<IOAD> subroutine takes one positional argument and converts
+that to an C<IO::Path::AutoDecompress> object.  It is intended to
+be used in a way similar to the C<.IO> method in core.
+
+=begin code :lang<raku>
+
+use IO::Path::AutoDecompress;
+
+# using the IOAD subroutine as a method
+my $io = "foobar.txt.gz".&IOAD;
+.say for $io.lines;
+
+=end code
 
 =head1 PREREQUISITES
 

@@ -2,5 +2,9 @@ Revision history for IO-Path-AutoDecompress
 
 {{$NEXT}}
 
+0.0.2  2022-10-21T12:10:08+02:00
+    - Add IOAD subroutine, for use as alternate .IO
+    - Add more documentation and examples
+
 0.0.1  2022-10-20T15:45:21+02:00
     - Initial version
