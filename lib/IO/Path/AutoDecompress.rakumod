@@ -13,6 +13,18 @@ class IO::Path::AutoDecompress is IO::Path {
             my $proc := run <bunzip2 --stdout>, self, :out;
             $proc.out.lines(:$chomp, :$enc, :$nl-in)
         }
+        elsif $extension eq '7z' {
+            my $proc := run <7z e -so>, self, :out;
+            $proc.out.lines(:$chomp, :$enc, :$nl-in)
+        }
+        elsif $extension eq 'rar' {
+            my $proc := run <unrar p>, self, :out;
+            $proc.out.lines(:$chomp, :$enc, :$nl-in)
+        }
+        elsif $extension eq 'zip' {
+            my $proc := run <7z e -so>, self, :out;
+            $proc.out.lines(:$chomp, :$enc, :$nl-in)
+        }
         else {
             self.IO::Path::lines(:$chomp, :$enc, :$nl-in)
         }
@@ -26,6 +38,18 @@ class IO::Path::AutoDecompress is IO::Path {
         }
         elsif $extension eq 'bz2' {
             my $proc := run <bunzip2 --stdout>, self, :out;
+            $proc.out.slurp(:$enc)
+        }
+        elsif $extension eq '7z' {
+            my $proc := run <7z e -so>, self, :out;
+            $proc.out.slurp(:$enc)
+        }
+        elsif $extension eq 'rar' {
+            my $proc := run <unrar p>, self, :out;
+            $proc.out.slurp(:$enc)
+        }
+        elsif $extension eq 'zip' {
+            my $proc := run <7z e -so>, self, :out;
             $proc.out.slurp(:$enc)
         }
         else {
