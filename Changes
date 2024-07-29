@@ -1,6 +1,8 @@
 Revision history for IO-Path-AutoDecompress
 
 {{$NEXT}}
+
+0.0.3  2024-07-29T15:14:33+02:00
     - Update copyright year
     - Add separate CI badges for each OS
     - Add sponsor button
