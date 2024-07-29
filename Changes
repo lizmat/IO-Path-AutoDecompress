@@ -1,6 +1,9 @@
 Revision history for IO-Path-AutoDecompress
 
 {{$NEXT}}
+    - Update copyright year
+    - Add separate CI badges for each OS
+    - Add sponsor button
 
 0.0.2  2022-10-21T12:10:08+02:00
     - Add IOAD subroutine, for use as alternate .IO
