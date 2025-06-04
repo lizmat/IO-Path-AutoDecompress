@@ -1,0 +1,21 @@
+use Test;
+use IO::Path::AutoDecompress;
+
+plan 8;
+
+my $program := $*PROGRAM.absolute;
+run 'gzip', '-k', $program;
+my $io := ($program ~ '.gz').IO;
+
+END unlink $io;
+
+for IO::Path::AutoDecompress.new($io.relative), $io.&IOAD -> $path {
+
+    isa-ok $path, IO::Path::AutoDecompress;
+    isa-ok $path, IO::Path;
+
+    is-deeply $path.slurp, $*PROGRAM.slurp, 'normal .slurp ok';
+    is-deeply $path.lines, $*PROGRAM.lines, 'normal .lines ok';
+}
+
+# vim: expandtab shiftwidth=4

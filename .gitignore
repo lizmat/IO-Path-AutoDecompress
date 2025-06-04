@@ -1,3 +1,4 @@
 .precomp/
 /IO-Path-AutoDecompress-*
 /releases/
+*.rakucov

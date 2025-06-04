@@ -23,7 +23,7 @@ my $io = "foobar.txt.gz".&IOAD;
 DESCRIPTION
 ===========
 
-IO::Path::AutoDecompress is a module that provides a subclass to `IO::Path`, that will transparently handle compressed files that are compressed with `gzip` (the `.gz` file extension) or `bzip2` (the `.bz2` extension) for the `.slurp` and `.lines` methods.
+IO::Path::AutoDecompress is a distribution that provides a subclass to `IO::Path`, that will transparently handle compressed files that are compressed with `gzip` (the `.gz` file extension) or `bzip2` (the `.bz2` extension) for the `.slurp` and `.lines` methods.
 
 EXPORTED SUBROUTINES
 ====================
@@ -58,7 +58,7 @@ If you like this module, or what I’m doing more generally, committing to a [sm
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2022, 2024 Elizabeth Mattijsen
+Copyright 2022, 2024, 2025 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
