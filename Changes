@@ -1,7 +1,10 @@
 Revision history for IO-Path-AutoDecompress
 
 {{$NEXT}}
+    - Add support for zip, rar, 7z and xz extensions,
+      Zer0-Tolerance++
     - Add tests that actually test compressed files
+    - Modernize META
     - Update copyright year
 
 0.0.3  2024-07-29T15:14:33+02:00

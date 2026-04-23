@@ -7,7 +7,6 @@ IO::Path::AutoDecompress - IO::Path with automatic decompression
 =head1 SYNOPSIS
 
 =begin code :lang<raku>
-
 use IO::Path::AutoDecompress;
 
 # read lines from a gzipped file transparently
@@ -17,7 +16,6 @@ my $io = IO::Path::AutoDecompress.new("foobar.txt.gz");
 # same, but using an .IO like subroutine as a method
 my $io = "foobar.txt.gz".&IOAD;
 .say for $io.lines;
-
 =end code
 
 =head1 DESCRIPTION
@@ -36,19 +34,52 @@ that to an C<IO::Path::AutoDecompress> object.  It is intended to
 be used in a way similar to the C<.IO> method in core.
 
 =begin code :lang<raku>
-
 use IO::Path::AutoDecompress;
 
 # using the IOAD subroutine as a method
 my $io = "foobar.txt.gz".&IOAD;
 .say for $io.lines;
-
 =end code
 
 =head1 PREREQUISITES
 
 This module assumes some version of the C<gunzip> and C<bunzip2>
-programs can be executed with the C<--stdout> argument.
+programs can be executed with the C<--stdout> argument.  Most
+Unixes and derivatives come installed with those.
+
+Alternately the C<7z> program can be used.  This can be installed thusly:
+
+For Debian-based Linux distributions, such as Ubuntu or Debian,
+you can install 7zip using the apt package manager
+=begin output
+sudo apt update
+sudo apt install p7zip-full
+Red Hat/Fedora/CentOS Systems
+=end output
+
+For Fedora, CentOS, and other RPM-based distributions, use the
+following command:
+=begin output
+sudo dnf install p7zip
+=end output
+
+For older CentOS/RHEL systems with yum:
+=begin output
+sudo yum install p7zip
+=end output
+
+For Arch Linux and other Arch-based distributions, use the
+following command:
+=begin output
+sudo pacman -S p7zip
+=end output
+
+For MacOS, install using brew:
+=begin output
+brew install p7zip
+=end output
+
+For Windows, use the L<download page of 7-Zip itself|https://www.7-zip.org>.
 
 =head1 AUTHOR
 
@@ -63,7 +94,7 @@ deal to me!
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2022, 2024, 2025 Elizabeth Mattijsen
+Copyright 2022, 2024, 2026 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

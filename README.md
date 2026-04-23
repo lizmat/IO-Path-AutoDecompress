@@ -44,7 +44,33 @@ my $io = "foobar.txt.gz".&IOAD;
 PREREQUISITES
 =============
 
-This module assumes some version of the `gunzip` and `bunzip2` programs can be executed with the `--stdout` argument.
+This module assumes some version of the `gunzip` and `bunzip2` programs can be executed with the `--stdout` argument. Most Unixes and derivatives come installed with those.
+
+Alternately the `7z` program can be used. This can be installed thusly:
+
+For Debian-based Linux distributions, such as Ubuntu or Debian, you can install 7zip using the apt package manager
+
+    sudo apt update
+    sudo apt install p7zip-full
+    Red Hat/Fedora/CentOS Systems
+
+For Fedora, CentOS, and other RPM-based distributions, use the following command:
+
+    sudo dnf install p7zip
+
+For older CentOS/RHEL systems with yum:
+
+    sudo yum install p7zip
+
+For Arch Linux and other Arch-based distributions, use the following command:
+
+    sudo pacman -S p7zip
+
+For MacOS, install using brew:
+
+    brew install p7zip
+
+For Windows, use the [download page of 7-Zip itself](https://www.7-zip.org).
 
 AUTHOR
 ======
@@ -58,7 +84,7 @@ If you like this module, or what I’m doing more generally, committing to a [sm
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2022, 2024, 2025 Elizabeth Mattijsen
+Copyright 2022, 2024, 2026 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

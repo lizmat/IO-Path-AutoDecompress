@@ -10,13 +10,18 @@
   "description": "IO::Path with automatic decompression",
   "license": "Artistic-2.0",
   "name": "IO::Path::AutoDecompress",
-  "perl": "6.d",
   "provides": {
     "IO::Path::AutoDecompress": "lib/IO/Path/AutoDecompress.rakumod"
   },
+  "raku": "6.d",
   "resources": [
   ],
   "source-url": "https://github.com/lizmat/IO-Path-AutoDecompress.git",
+  "support": {
+    "bugtracker": "https://github.com/lizmat/IO-Path-AutoDecompress/issues",
+    "email": "liz@raku.rocks",
+    "source": "https://github.com/lizmat/IO-Path-AutoDecompress.git"
+  },
   "tags": [
     "IO",
     "COMPRESS"

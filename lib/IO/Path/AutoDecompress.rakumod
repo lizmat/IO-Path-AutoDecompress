@@ -1,40 +1,34 @@
-class IO::Path::AutoDecompress is IO::Path {
+# Helper class to give IO::Path a "proc" like interface
+my role Proccer {
+    method out() { self }
+    method lines(|c) { self.IO::Path::lines(|c) }
+    method slurp(|c) { self.IO::Path::slurp(|c) }
+}
+
+my class IO::Path::AutoDecompress is IO::Path {
+
+    # Create a "proc" like object to obtain data from
+    method !proc() {
+        my str $extension = self.extension;
+        $extension eq 'gz'
+          ?? run(<gunzip --stdout>, self, :out)
+          !! $extension eq 'bz2'
+            ?? run(<bunzip2 --stdout>, self, :out)
+            !! $extension eq 'zip' | 'rar' | '7z' | 'xz'
+              ?? run(<7z e -so>, self, :out)
+              !! self but Proccer
+    }
+
     method lines(IO::Path::AutoDecompress:D:
       :$chomp = True,
       :$enc   = 'utf8',
       :$nl-in = ["\x0A", "\r\n"]
     ) {
-        my str $extension = self.extension;
-        if $extension eq 'gz' {
-            my $proc := run <gunzip --stdout>, self, :out;
-            $proc.out.lines(:$chomp, :$enc, :$nl-in)
-        }
-        elsif $extension eq 'bz2' {
-            my $proc := run <bunzip2 --stdout>, self, :out;
-            $proc.out.lines(:$chomp, :$enc, :$nl-in)
-        }
-        elsif $extension ~~ /^(zip|rar|7z|xz)$/ {
-            my $proc := run <7z e -so>, self, :out;
-            $proc.out.lines(:$chomp, :$enc, :$nl-in)
-        }
-        else {
-            self.IO::Path::lines(:$chomp, :$enc, :$nl-in)
-        }
+        self!proc.out.lines(:$chomp, :$enc, :$nl-in)
     }
 
     method slurp(IO::Path::AutoDecompress:D: :$enc = 'utf8') {
-        my str $extension = self.extension;
-        if $extension eq 'gz' {
-            my $proc := run <gunzip --stdout>, self, :out;
-            $proc.out.slurp(:$enc)
-        }
-        elsif $extension eq 'bz2' {
-            my $proc := run <bunzip2 --stdout>, self, :out;
-            $proc.out.slurp(:$enc)
-        }
-        else {
-            self.IO::Path::slurp(:$enc)
-        }
+        self!proc.out.slurp(:$enc)
     }
 }
 
