@@ -13,6 +13,10 @@ class IO::Path::AutoDecompress is IO::Path {
             my $proc := run <bunzip2 --stdout>, self, :out;
             $proc.out.lines(:$chomp, :$enc, :$nl-in)
         }
+        elsif $extension ~~ /^(zip|rar|7z|xz)$/ {
+            my $proc := run <7z e -so>, self, :out;
+            $proc.out.lines(:$chomp, :$enc, :$nl-in)
+        }
         else {
             self.IO::Path::lines(:$chomp, :$enc, :$nl-in)
         }
